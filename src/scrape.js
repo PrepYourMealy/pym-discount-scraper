@@ -1,5 +1,5 @@
 const puppeteer = require("puppeteer");
-
+const locateChrome = require('locate-chrome');
 const urls = [
     "https://www.aldi-sued.de/de/angebote/frischekracher.html",
     "https://www.aldi-sued.de/de/angebote/preisaktion.html",
@@ -41,8 +41,11 @@ async function autoScroll(page) {
 }
 
 async function getItemsFromAldi(url, extractor) {
+    const executablePath = await new Promise(resolve => locateChrome((arg) => resolve(arg))) || '';
+
+
     // Launch Puppeteer with headless mode enabled
-    const browser = await puppeteer.launch({ headless: true, executablePath: '/usr/bin/google-chrome' });
+    const browser = await puppeteer.launch({ headless: true, executablePath: executablePath });
     const page = await browser.newPage();
 
     // Load the page
