@@ -1,7 +1,5 @@
-FROM node:20
-
+FROM ghcr.io/puppeteer/puppeteer:latest
 WORKDIR /app
-
 COPY package.json /app
 COPY src /app/src
 
