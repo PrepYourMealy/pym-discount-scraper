@@ -20,7 +20,6 @@ async function getProducts() {
 }
 
 
-
 async function autoScroll(page) {
     await page.evaluate(async () => {
         await new Promise((resolve, reject) => {
@@ -45,14 +44,16 @@ async function getItemsFromAldi(url, extractor) {
 
     console.log("Path to Chrome: ", executablePath);
     // Launch Puppeteer with headless mode enabled
-    const browser = await puppeteer.launch({ headless: true, executablePath: executablePath },[
-        '--no-sandbox',
-        '--disable-setuid-sandbox'
-    ]);
+    const browser = await puppeteer.launch({
+        headless: true, executablePath: executablePath, args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ]
+    });
     const page = await browser.newPage();
 
     // Load the page
-    await page.goto(url, { waitUntil: "networkidle2" });
+    await page.goto(url, {waitUntil: "networkidle2"});
     await autoScroll(page);
     // Wait for the product items to be loaded (adjust the selector if necessary)
     if (url.includes("aldi")) {
