@@ -24,10 +24,10 @@ async function getProducts() {
 async function autoScroll(page) {
     await page.evaluate(async () => {
         await new Promise((resolve, reject) => {
-            var totalHeight = 0;
-            var distance = 100;
-            var timer = setInterval(() => {
-                var scrollHeight = document.body.scrollHeight;
+            let totalHeight = 0;
+            const distance = 100;
+            const timer = setInterval(() => {
+                const scrollHeight = document.body.scrollHeight;
                 window.scrollBy(0, distance);
                 totalHeight += distance;
 
@@ -45,7 +45,10 @@ async function getItemsFromAldi(url, extractor) {
 
     console.log("Path to Chrome: ", executablePath);
     // Launch Puppeteer with headless mode enabled
-    const browser = await puppeteer.launch({ headless: true, executablePath: executablePath });
+    const browser = await puppeteer.launch({ headless: true, executablePath: executablePath },[
+        '--no-sandbox',
+        '--disable-setuid-sandbox'
+    ]);
     const page = await browser.newPage();
 
     // Load the page
