@@ -43,7 +43,7 @@ async function autoScroll(page) {
 async function getItemsFromAldi(url, extractor) {
     const executablePath = await new Promise(resolve => locateChrome((arg) => resolve(arg))) || '';
 
-
+    console.log("Path: ",executablePath);
     // Launch Puppeteer with headless mode enabled
     const browser = await puppeteer.launch({ headless: true, executablePath: executablePath });
     const page = await browser.newPage();
