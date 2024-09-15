@@ -20,21 +20,18 @@ const checkIfRepoIsEmpty = async () => {
 
 
 const updateDiscountsOnServer = async (discounts) => {
-    const response = await fetch(APPLICATION_SERVER_URL + '/api/v1/discounts',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(discounts)
-        }
-    )
-    // TODO better handle or add retry logic
     try {
-        return await response.json();
-    } catch (error) {
-        console.error(error);
-        return null;
+        const response = await fetch(APPLICATION_SERVER_URL + '/api/v1/discounts',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(discounts)
+            }
+        )
+    } catch (e) {
+        console.log(e)
     }
 }
 
