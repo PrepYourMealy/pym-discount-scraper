@@ -42,7 +42,7 @@ async function autoScroll(page) {
 
 async function getItemsFromAldi(url, extractor) {
     // Launch Puppeteer with headless mode enabled
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: true, executablePath: '/usr/bin/google-chrome' });
     const page = await browser.newPage();
 
     // Load the page

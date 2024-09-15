@@ -2,7 +2,7 @@ const {APPLICATION_SERVER_URL} = require('./env');
 
 const checkIfRepoIsEmpty = async () => {
     try {
-        const response = await fetch(APPLICATION_SERVER_URL + '/discounts',
+        const response = await fetch(APPLICATION_SERVER_URL + '/api/v1/discounts',
             {
                 method: 'GET',
                 headers: {
@@ -20,7 +20,7 @@ const checkIfRepoIsEmpty = async () => {
 
 
 const updateDiscountsOnServer = async (discounts) => {
-    const response = await fetch(APPLICATION_SERVER_URL + '/discounts',
+    const response = await fetch(APPLICATION_SERVER_URL + '/api/v1/discounts',
         {
             method: 'POST',
             headers: {
