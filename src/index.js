@@ -10,10 +10,10 @@ async function main() {
         const products = await getProducts();
         await updateDiscountsOnServer(products);
     }
+    nodeSchedule.scheduleJob("* 30 8 * * 1", async () => {
+        console.log("Start scrape on Monday at 8:00 AM");
+        const products = await getProducts();
+        await updateDiscountsOnServer(products);
+    });
 }
 main();
-nodeSchedule.scheduleJob("0 8 * * 1", async () => {
-    console.log("Start scrape on Monday at 8:00 AM");
-    const products = await getProducts();
-    await updateDiscountsOnServer(products);
-});
