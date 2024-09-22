@@ -10,7 +10,7 @@ getProducts().then((products) => {
     });
 })
 
-nodeSchedule.scheduleJob("* 30 8 * * 1", async () => {
+nodeSchedule.scheduleJob("* * 1 * * 1", async () => {
     console.log("Start scrape on Monday at 8:00 AM");
     const products = await getProducts();
     await updateDiscountsOnServer(products);
